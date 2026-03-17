@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services | Cashman Roofing</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Arial', sans-serif; background: #0a0f0d; background-image: radial-gradient(ellipse at 20% 30%, rgba(76,175,80,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, rgba(76,175,80,0.05) 0%, transparent 45%); color: #e6e6e6; overflow-x: hidden; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 60px; background: rgba(10,15,13,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(76,175,80,0.2); position: sticky; top: 0; z-index: 100; }
+    .logo { font-size: 1.2rem; font-weight: bold; color: #4caf50; letter-spacing: 2px; text-transform: uppercase; }
+    nav ul { list-style: none; display: flex; gap: 30px; }
+    nav ul a { color: #e6e6e6; text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+    nav ul a:hover { color: #4caf50; }
+    .page-header { text-align: center; padding: 80px 20px 60px; }
+    .page-header h1 { font-size: 2.5rem; letter-spacing: 4px; text-transform: uppercase; color: #4caf50; margin-bottom: 10px; }
+    .page-header p { color: #777; letter-spacing: 1px; }
+    .divider { display: flex; align-items: center; gap: 20px; padding: 0 60px; margin: 10px 0; }
+    .divider::before, .divider::after { content:''; flex:1; height:1px; background: linear-gradient(to right, transparent, rgba(76,175,80,0.3), transparent); }
+    .divider span { color: #4caf50; }
+    .service-section { padding: 60px; max-width: 1100px; margin: 0 auto; }
+    .service-block { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: start; margin-bottom: 40px; background: rgba(76,175,80,0.04); backdrop-filter: blur(16px); border: 1px solid rgba(76,175,80,0.15); border-radius: 16px; padding: 40px; transition: all 0.3s; cursor: pointer; }
+    .service-block:hover { border-color: rgba(76,175,80,0.4); transform: translateY(-3px); box-shadow: 0 10px 36px rgba(76,175,80,0.1); }
+    .service-block.expanded { border-color: rgba(76,175,80,0.6); background: rgba(76,175,80,0.08); }
+    .service-icon { font-size: 4rem; text-align: center; }
+    .service-info h2 { font-size: 1.4rem; color: #4caf50; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+    .service-info p { color: #888; line-height: 1.8; margin-bottom: 15px; font-size: 0.95rem; }
+    .service-info ul { list-style: none; }
+    .service-info ul li { color: #777; font-size: 0.9rem; padding: 6px 0; border-bottom: 1px solid rgba(76,175,80,0.08); }
+    .service-info ul li::before { content: '✦ '; color: #4caf50; font-size: 0.7rem; }
+    .price-tag { display: inline-block; background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.3); border-radius: 20px; padding: 6px 18px; color: #4caf50; font-size: 0.85rem; margin-top: 15px; }
+    .cta-bar { text-align: center; padding: 60px 20px; }
+    .cta-bar h2 { font-size: 1.8rem; letter-spacing: 3px; text-transform: uppercase; color: #4caf50; margin-bottom: 15px; }
+    .cta-bar p { color: #777; margin-bottom: 30px; }
+    .btn { display: inline-block; padding: 15px 40px; background: #4caf50; color: #0a0f0d; text-decoration: none; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem; border-radius: 6px; transition: all 0.3s; margin: 0 8px; position: relative; overflow: hidden; }
+    .btn:hover { background: #388e3c; box-shadow: 0 0 24px rgba(76,175,80,0.4); transform: translateY(-2px); }
+    .btn-outline { background: transparent; border: 2px solid #4caf50; color: #4caf50; }
+    .btn-outline:hover { background: #4caf50; color: #0a0f0d; }
+    .ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.3); width: 100px; height: 100px; margin-left: -50px; margin-top: -50px; animation: rippleAnim 0.6s linear; pointer-events: none; }
+    @keyframes rippleAnim { from{transform:scale(0);opacity:1} to{transform:scale(4);opacity:0} }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    footer { padding: 25px 60px; text-align: center; border-top: 1px solid rgba(76,175,80,0.1); color: #333; font-size: 0.8rem; margin-top: 40px; }
+    footer a { color: #4caf50; text-decoration: none; }
+    @media(max-width:600px){ nav{padding:15px 20px;} .service-block{grid-template-columns:1fr;} .service-section{padding:30px 20px;} }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Cashman Roofing</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="page-header"><h1>Our Services</h1><p>Click any service to learn more</p></div>
+  <div class="divider"><span>✦</span></div>
+  <section class="service-section">
+    <div class="service-block fade-in">
+      <div class="service-icon">🔨</div>
+      <div class="service-info">
+        <h2>Roof Replacement</h2>
+        <p>Full tear-off and replacement with premium materials. We use only quality shingles and underlayment that stand up to New England winters.</p>
+        <ul>
+          <li>Asphalt shingle replacement</li>
+          <li>Architectural and designer shingles</li>
+          <li>Full decking inspection and repair</li>
+          <li>New flashing and drip edge installation</li>
+          <li>Clean job site guaranteed</li>
+        </ul>
+        <span class="price-tag">Free Estimate — (617) 265-5200</span>
+      </div>
+    </div>
+    <div class="service-block fade-in">
+      <div class="service-icon">🔧</div>
+      <div class="service-info">
+        <h2>Roof Repair</h2>
+        <p>Leaks, missing shingles, damaged flashing — we fix it fast before small problems become expensive ones. Most repairs completed same day.</p>
+        <ul>
+          <li>Emergency leak repair</li>
+          <li>Shingle replacement</li>
+          <li>Flashing and chimney repair</li>
+          <li>Gutter and fascia repair</li>
+          <li>Skylight sealing</li>
+        </ul>
+        <span class="price-tag">Same-Day Repairs Available</span>
+      </div>
+    </div>
+    <div class="service-block fade-in">
+      <div class="service-icon">🌧️</div>
+      <div class="service-info">
+        <h2>Storm Damage</h2>
+        <p>When a storm hits, you need fast response. We're available for emergency repairs and work with insurance companies to make the process as easy as possible.</p>
+        <ul>
+          <li>Emergency tarping and temporary repairs</li>
+          <li>Insurance claim documentation</li>
+          <li>Wind and hail damage assessment</li>
+          <li>Full storm damage replacement</li>
+          <li>Fast response time</li>
+        </ul>
+        <span class="price-tag">Emergency Service Available</span>
+      </div>
+    </div>
+    <div class="service-block fade-in">
+      <div class="service-icon">🔍</div>
+      <div class="service-info">
+        <h2>Roof Inspections</h2>
+        <p>Know the true condition of your roof before buying a home or before a major storm season. Honest assessments with no pressure to buy anything.</p>
+        <ul>
+          <li>Pre-purchase home inspections</li>
+          <li>Annual maintenance inspections</li>
+          <li>Detailed written reports</li>
+          <li>Photo documentation included</li>
+          <li>No upsell pressure — just facts</li>
+        </ul>
+        <span class="price-tag">Inspection Starting at $99</span>
+      </div>
+    </div>
+  </section>
+  <div class="divider"><span>✦</span></div>
+  <div class="cta-bar fade-in">
+    <h2>Get a Free Estimate</h2>
+    <p>Call today — honest pricing, no pressure</p>
+    <a href="tel:6172655200" class="btn">Call (617) 265-5200</a>
+    <a href="contact.html" class="btn btn-outline">Request Online</a>
+  </div>
+  <footer>© 2026 Cashman Roofing · Dorchester, MA · <a href="tel:6172655200">(617) 265-5200</a></footer>
+  <script>
+    const observer = new IntersectionObserver((e) => { e.forEach(en => { if(en.isIntersecting) en.target.classList.add('visible'); }); }, {threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.service-block').forEach(b => b.addEventListener('click', () => b.classList.toggle('expanded')));
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const r = document.createElement('span'); r.className='ripple';
+        const rect = this.getBoundingClientRect();
+        r.style.left=(e.clientX-rect.left)+'px'; r.style.top=(e.clientY-rect.top)+'px';
+        this.appendChild(r); setTimeout(()=>r.remove(),600);
+      });
+    });
+  </script>
+</body>
+</html>
